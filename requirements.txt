@@ -1,0 +1,17 @@
+Report (50%):
+For Each Question:
+- State Briefly the Question
+- Method to be Used
+- Results: Tables and Graphs
+- Numerical Issues
+  - Convergence
+  - How long it is taking (CPU Time)
+  - Test problem with different parameters (Sensitivity)
+  
+- Appendix: Code
+
+Presentation (50%):
+- Names of the people of the group
+- What part of the project they worked on
+- Grades can be assigned Individually
+- A better summary of Project
