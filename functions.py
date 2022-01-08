@@ -4,6 +4,7 @@ import numpy as np
 import time
 import pandas as pd
 from scipy.stats import norm
+
 def lehmer(seed):
     x = [seed]
     a = math.pow(7,5)
@@ -14,6 +15,7 @@ def lehmer(seed):
         x.append(temp)
     uniform = [u / m for u in x]
     return uniform
+
 def question1(seed):
     uniform = lehmer(seed)
     fig, axs = plt.subplots(1, 2, tight_layout=True)
@@ -27,6 +29,7 @@ def question1(seed):
     axs[1].set_title("Numpy Built In")
     axs[1].set_xlabel("Value")
     axs[1].set_ylabel("Count") 
+    
 def question2(seed):
     uniform = lehmer(seed)
     pdf = []
@@ -56,6 +59,7 @@ def question2(seed):
     axs[1].set_xlabel("Time")
     axs[1].set_ylabel("Value of Financial Asset")
     axs[1].set_ylim([-50000, 5000])
+    
 def question3():
     binomialRV = []
     for i in range(5000):
@@ -68,6 +72,7 @@ def question3():
     plt.ylabel("Count")
     numLessThan50 = [x for x in binomialRV if x < 50]
     print(len(numLessThan50)/5000.)
+    
 def binomial(success):
     probability = 0
     for i in range(success):
@@ -75,6 +80,7 @@ def binomial(success):
         temp = nchooseX * (0.7)**i * (0.3)**(70-i)
         probability = probability + temp
     print(probability)
+    
 def question4():
     normal = np.random.normal(0.0,1.0,5000)
     print(normal)
@@ -83,6 +89,7 @@ def question4():
     plt.title("Normal Gaussian Distribution")
     plt.xlabel("Value")
     plt.ylabel("Count")   
+    
 def question_5():
     simple_monte_carlo_estimates = []
     times = []
@@ -137,6 +144,7 @@ def question_5():
     df['error'] = error
     df['confidence_intervals'] = confidence_intervals
     return all_data, trials, df
+
 def printData(data,trials):
     for i in range(0,6,3):
         fig, axs = plt.subplots(1, 3, tight_layout=True)
@@ -145,6 +153,7 @@ def printData(data,trials):
             axs[j].set_title("x_is | N = {}".format(trials[i+j]))
             axs[j].set_xlabel("Value")
             axs[j].set_ylabel("Count")
+            
 def generate_and_plot_question_six_a_data():
     N = np.power(np.full(6, 10), range(1, 7))
     data = []
@@ -153,6 +162,7 @@ def generate_and_plot_question_six_a_data():
         data.append(x_is)
     printData(data,[10,100,1000,10000,100000,1000000])   
     return data
+
 def generate_and_plot_question_six_b_data():
     N = np.power(np.full(6, 10), range(1, 7))
     data = []
@@ -161,6 +171,7 @@ def generate_and_plot_question_six_b_data():
         data.append(x_is)
     printData(data,[10,100,1000,10000,100000,1000000])   
     return data
+
 def question_six_a(data):
     simple_monte_carlo_estimates = []
     times = []
@@ -200,6 +211,7 @@ def question_six_a(data):
     df['cpu_time'] = times
     df['error'] = error
     return df
+
 def question_six_b(data):
     simple_monte_carlo_estimates = []
     times = []
@@ -242,6 +254,7 @@ def question_six_b(data):
     df['cpu_time'] = times
     df['error'] = error
     return df
+
 def generate_and_plot_question_seven_data():
     N = np.power(np.full(6, 10), range(1, 7))
     data = []
@@ -262,6 +275,7 @@ def generate_and_plot_question_seven_data():
         axs[1].set_xlabel("Value")
         axs[1].set_ylabel("Count")
     return data
+
 def question_seven_part_a(data):
     simple_monte_carlo_estimates = []
     times = []
@@ -310,6 +324,7 @@ def question_seven_part_a(data):
     df['error'] = error
     df['confidence_intervals'] = confidence_intervals
     return df
+
 def question_seven_part_b(data):
     antithetic_estimates = []
     times = []
@@ -364,6 +379,7 @@ def question_seven_part_b(data):
     df['error'] = error
     df['confidence_intervals'] = confidence_intervals
     return df
+
 def question_seven_part_c(data):
     control_variate_estimates = []
     times = []
@@ -421,6 +437,7 @@ def question_seven_part_c(data):
     df['error'] = error
     df['confidence_intervals'] = confidence_intervals
     return df
+
 def question_eight_part_a(r, sigma, s_0, T, K):
     N = np.power(np.full(6, 10), range(1, 7))
     times = []
@@ -472,14 +489,17 @@ def question_eight_part_a(r, sigma, s_0, T, K):
     df['option_price_estimates_adjusted'] = option_price_estimates_adjusted
     df['cpu_time'] = times
     return df
+
 def bs_call(S, K, T, r, sigma):
     norm_cdf = norm.cdf
     d1 = (np.log(S/K) + (r + sigma**2/2)*T) / (sigma*np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
     return S * norm_cdf(d1) - K * np.exp(-r*T)* norm_cdf(d2)
+
 def put_call_parity(C, s_0, K, r, T):
     PV = K / (1 + r)**T
     return C - s_0 + PV
+
 def question_nine_part_c(r, sigma, s_0, T, K):
     N = np.power(np.full(6, 10), range(1, 7))
     times = []
@@ -522,6 +542,7 @@ def question_nine_part_c(r, sigma, s_0, T, K):
     df['option_price_estimates'] = option_price_estimates
     df['cpu_time'] = times
     return df
+
 def question_nine_part_d(r, sigma, s_0, T, K):
     N = np.power(np.full(6, 10), range(1, 7))
     times = []
